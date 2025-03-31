@@ -1,0 +1,10 @@
+flask
+pandas
+nltk
+spacy
+torch
+sentence-transformers
+transformers
+gensim
+scikit-learn
+gunicorn
