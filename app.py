@@ -14,8 +14,11 @@ app = Flask(__name__)
 sbert_model = SentenceTransformer("all-MiniLM-L6-v2")
 biobert_tokenizer = AutoTokenizer.from_pretrained("deepset/bert-large-uncased-whole-word-masking-squad2")
 biobert_model = AutoModelForQuestionAnswering.from_pretrained("deepset/bert-large-uncased-whole-word-masking-squad2", torch_dtype=torch.float32)
-nlp = spacy.load("en_core_web_sm")
-
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 # Load dataset
 df = pd.read_csv("medDataset_processed.csv", on_bad_lines="skip")
 df = df.dropna()
