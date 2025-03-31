@@ -6,6 +6,7 @@ from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 import spacy
 import re
 import os
+import subprocess
 
 # Initialize Flask app
 app = Flask(__name__)
